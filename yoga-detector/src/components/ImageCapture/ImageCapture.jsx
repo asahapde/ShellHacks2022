@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import Webcam from "react-webcam";
 
+var countdownTime = 3;
+var timerInterval;
 
 const ImageCaptureComponent = () => <Webcam />;
 
@@ -18,12 +20,27 @@ export const ImageCapture = () => {
 
     //Get screenshot via reference
     const capture = React.useCallback(
+
         () => {
-        const imageSrc = webcamRef.current.getScreenshot();
-        setImage(imageSrc)
+            
+            document.getElementById("captureButton").disabled = true;
+            timerInterval = setInterval(countDown, 1000);
+            
+            countdownTime = 3;
         });
 
+    function countDown(){
+        if(countdownTime == 0){
+            clearInterval(timerInterval);
+            const imageSrc = webcamRef.current.getScreenshot();
+            setImage(imageSrc);
+            document.getElementById("captureButton").disabled = false;
+        }
 
+        console.log(countdownTime.toString());
+        countdownTime--;
+    }
+    
     return (
 
       //If there is no image, set the image to the webcam picture
@@ -45,12 +62,14 @@ export const ImageCapture = () => {
                         e.preventDefault();
                         setImage('')
                     }}
+                        id="captureButton"
                         className="capture-btn">
                         Redo Pose</button> :
                     <button onClick={(e) => {
                         e.preventDefault();
                         capture();
                     }}
+                        id="captureButton"
                         className="btn btn-primary capture-btn">Capture Pose</button>
                 }
             </div>
