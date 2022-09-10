@@ -7,7 +7,7 @@ var timerInterval;
 const ImageCaptureComponent = () => <Webcam />;
 
 const videoConstraints = {
-    width: 440,
+    width: 640,
     height: 400,
     //Require user-facing camera or the media request will fail
     facingMode: "user"
@@ -52,7 +52,7 @@ export const ImageCapture = () => {
                     height={400}
                     ref={webcamRef}
                     screenshotFormat="image/jpeg"
-                    width={440}
+                    width={640}
                     videoConstraints={videoConstraints}
                 /> : <img src={image} />}
             </div>
@@ -70,7 +70,7 @@ export const ImageCapture = () => {
                         capture();
                     }}
                         id="captureButton"
-                        className="capture-btn">Capture Pose</button>
+                        className="btn btn-primary capture-btn">Capture Pose</button>
                 }
             </div>
         </div>
