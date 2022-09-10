@@ -16,6 +16,54 @@
     border: 1px solid black;
     border-radius: 18px 18px 18px 18px;
     }
+    
+    .box{
+        float: left;
+        justify-content: center;
+    }
+
+    .instructions, .about {
+        max-width:30vw;
+        max-height: 30vh;
+        margin: 60px;
+        padding: 0;
+        background-color: white;
+        border: 1px solid black;
+        border-radius: 8px 8px 8px 8px;
+    }
+    
+    .instructions h3, .about h3{
+    font-size: 24px;
+    padding-top: 30px;
+    color:#f4810e;
+    font-weight:600;
+    animation: fadein 3s;
+    margin: 0 auto;
+    margin-bottom: 10px;
+    }
+
+    .instructions ul{
+        margin: 10px;
+        padding: 10px;
+        text-align: left;
+        margin-left: 40px;
+    }
+    
+    .about {
+        max-width:30vw;
+        margin: 60px;
+        display: left;
+        padding: 0;
+        background-color: white;
+        border: 1px solid black;
+        border-radius: 8px 0px 0px 8px;
+    }
+
+    .about p{
+        margin: 20px;
+        padding: 20px;
+    }
+    
     .homepage-container .container h2 {
     font-size: 40px;
     color:#f4810e;
@@ -43,19 +91,17 @@
     -moz-appearance: none;
     appearance: none;
     outline: 0;
+    width: 60%;
     border: 1px solid #0e6e02;
-    width: 55%;
     border-radius: 3px;
     padding: 10px 15px;
     margin:10px auto 10px auto;
     display: block;
     text-align: center;
     font-size: 18px;
-    color: #0e6e02;
     transition-duration: 0.25s;
     }
     .homepage-container form input:hover {
-    background-color: #0e6e02;
     color:#FBD3E9;
     }
     .homepage-container form input:focus {
@@ -65,7 +111,7 @@
     }
     .homepage-container form ::placeholder
     {
-    color:#0e6e02;
+    color:white;
     }
     .homepage-container form input:hover::placeholder
     {
