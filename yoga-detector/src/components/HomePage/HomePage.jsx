@@ -18,7 +18,7 @@ const Home = () => {
         <div className="homepage-container">
             <div className="container">
                 <div className="text">
-                    <h2>Submit your Pose</h2>
+                    <h2>FormPerfect AI</h2>
                     <form className="form">
                         <ImageCapture/>
                         <input type="text" placeholder="Name of Pose" onChange={(e) => setPoseName(e.target.value)} />

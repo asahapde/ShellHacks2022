@@ -24,6 +24,9 @@ export const ImageCapture = () => {
         () => {
             
             document.getElementById("captureButton").disabled = true;
+            const timerHeader = document.createElement("h1");
+            timerHeader.id = "timer";
+            document.getElementById("webcamContainerId").appendChild(timerHeader);
             timerInterval = setInterval(countDown, 1000);
             
             countdownTime = 3;
@@ -35,16 +38,18 @@ export const ImageCapture = () => {
             const imageSrc = webcamRef.current.getScreenshot();
             setImage(imageSrc);
             document.getElementById("captureButton").disabled = false;
+            document.getElementById("timer").remove();
         }
-
-        console.log(countdownTime.toString());
+        if(countdownTime != 0){
+            document.getElementById("timer").innerHTML = countdownTime.toString();
+        }
         countdownTime--;
     }
     
     return (
 
       //If there is no image, set the image to the webcam picture
-        <div className="webcam-container">
+        <div id="webcamContainerId" className="webcam-container">
             <div className="webcam-img">
 
                 {image == '' ? <Webcam
