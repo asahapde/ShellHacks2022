@@ -1,0 +1,136 @@
+.homepage-container {
+    box-sizing: border-box;
+    background: linear-gradient(to left, #75b8eb, #c0ebff);
+    margin: 0;
+    min-height:80vh;
+    padding:60px 0;
+    overflow: hidden;
+    font-family: 'Source Sans Pro', sans-serif;
+    }
+    .homepage-container .container {
+    max-width:70vw;
+    margin: 0 auto;
+    display: flex;
+    padding: 0;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 18px 18px 18px 18px;
+    }
+    .homepage-container .container h2 {
+    font-size: 40px;
+    color:#f4810e;
+    font-weight:600;
+    animation: fadein 3s;
+    margin-bottom:20px;
+    }
+    .homepage-container .container .text
+    {
+    width: 90%;
+    padding:30px 0;
+    text-align: center;
+    margin:0 auto;
+    }
+    .homepage-container form {
+    border-radius: 10% 10%;    
+    padding: 20px 0;
+    position: relative;
+    z-index: 2;
+    width: 70%;
+    margin:0 auto;
+    }
+    .homepage-container form input {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    outline: 0;
+    border: 1px solid #0e6e02;
+    width: 55%;
+    border-radius: 3px;
+    padding: 10px 15px;
+    margin:10px auto 10px auto;
+    display: block;
+    text-align: center;
+    font-size: 18px;
+    color: #0e6e02;
+    transition-duration: 0.25s;
+    }
+    .homepage-container form input:hover {
+    background-color: #0e6e02;
+    color:#FBD3E9;
+    }
+    .homepage-container form input:focus {
+    background-color:#0e6e02;
+    width: 300px;
+    color:#FBD3E9;
+    }
+    .homepage-container form ::placeholder
+    {
+    color:#0e6e02;
+    }
+    .homepage-container form input:hover::placeholder
+    {
+    color:white;
+    }
+    .homepage-container form button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    outline: 0;
+    border: 0;
+    padding: 10px 15px;
+    border-radius: 3px;
+    font-size:20px;
+    width: 60%;
+    cursor: pointer;
+    transition-duration: 0.25s;
+    }
+    .homepage-container form button:hover {
+    border-radius: 5px;
+    }
+    /* webcam  */
+    .homepage-container .webcam-container
+    {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    width:100%;
+    margin:0 auto;
+    }
+    .homepage-container .webcam-container .webcam-btn
+    {
+    margin-top: 10px;
+    margin-bottom: 20px;
+    width:38%;
+    }
+    /* Media queries ~ */
+    @media screen and (max-width:1000px)
+    {
+    .homepage-container .container
+    {
+    max-width:90vw;
+    }
+    }
+    @media screen and (max-width:678px)
+    {
+    .login-container
+    {
+    padding-top: 10%;
+    }
+    .homepage-container .container
+    {
+    max-width: 80vw;
+    }
+    .homepage-container form
+    {
+    width:90%;
+    }
+    .homepage-container .loginDesign
+    {
+    display: none;
+    }
+    .homepage-container .container .text
+    {
+    width: 100%;
+    padding: 80px 20px;
+    }
+    }
