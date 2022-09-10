@@ -9,6 +9,7 @@ const Home = () => {
 
 
     const submitForm = () => {
+        //Placeholder for post method
         alert("Form submitted");
         setPoseName('');
     }
@@ -21,7 +22,7 @@ const Home = () => {
                     <h1>Submit your pose</h1>
                     <form className="form">
                         <ImageCapture/>
-                        <input type="text" placeholder="Name" onChange={(e) => setPoseName(e.target.value)} />
+                        <input type="text" placeholder="Name of Pose" onChange={(e) => setPoseName(e.target.value)} />
                         <button type="submit" id="submit-image-button" onClick={(e) => submitForm(e)}>Submit Pose</button>
                     </form>
                 </div>
