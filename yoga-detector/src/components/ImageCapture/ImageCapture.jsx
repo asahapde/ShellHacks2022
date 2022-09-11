@@ -123,17 +123,17 @@ export const ImageCapture = () => {
                         setImage('')
                     }}
                         id="captureButton"
-                        className="capture-btn">
+                        className="btn btn-primary m-5 capture-btn">
                         Redo Pose</button> :
                     <button onClick={(e) => {
                         e.preventDefault();
                         capture();
                     }}
                         id="captureButton"
-                        className="btn btn-primary capture-btn">Capture Pose</button>
+                        className="btn btn-success m-5 capture-btn">Capture Pose</button>
                 }
+                <button type="submit" className='btn m-5 btn-danger' onClick={(e) => submitForm(e)}>Submit Pose</button>
             </div>
-            <button type="submit" className='btn btn-danger' onClick={(e) => submitForm(e)}>Submit Pose</button>
             <h1 id="yogaPose"></h1>
         </div>
     );

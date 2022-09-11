@@ -1,24 +1,24 @@
 import React, { useState } from 'react'
 import './HomePageStyle.css'
-import { ImageCapture} from '../ImageCapture/ImageCapture'
+import { ImageCapture } from '../ImageCapture/ImageCapture'
 
 const Home = () => {
 
-    
+
 
     return (
         <div className="homepage-container">
             <div className="container">
                 <div className="text">
                     <h2>FormPerfect AI</h2>
-                        <ImageCapture/>
+                    <ImageCapture />
                 </div>
             </div>
-                
-                
-            <div className='box instructions'>
+
+            <div className="box">
+                <div className='instructions'>
                     <h3>Instructions</h3>
-                    
+
                     <ul>
                         <li>Allow the browser access to your webcam</li>
                         <li>Click 'Capture'</li>
@@ -27,11 +27,11 @@ const Home = () => {
                     </ul>
                 </div>
 
-                <div className='box about'>
+                <div className='about'>
                     <h3>About</h3>
-                   <p>This app uses a machine learning nueral network to detect your yoga poses and idientifies the yoga pose and gives you a score based on the accuracy of the pose in a percentage</p>
+                    <p>This app uses a machine learning nueral network to detect your yoga poses and idientifies the yoga pose and gives you a score based on the accuracy of the pose in a percentage</p>
                 </div>
-                
+            </div>
         </div>
     )
 }
