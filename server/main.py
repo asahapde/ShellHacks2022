@@ -1,10 +1,10 @@
 import mediapipe as mp
 import cv2
-
 import math
 import numpy as np
 import matplotlib.pyplot as plt
-
+import shutil
+import pathlib
 
 mp_drawing = mp.solutions.drawing_utils
 mp_drawing_styles = mp.solutions.drawing_styles
@@ -23,10 +23,7 @@ def detectPose(image, pose):
     
     landmarks = []
     
-    if results.pose_landmarks:
-        mp_drawing.draw_landmarks(image=output_image, landmark_list=results.pose_landmarks,
-                                  connections=mp_pose.POSE_CONNECTIONS)
-        
+    if results.pose_landmarks:      
         for landmark in results.pose_landmarks.landmark:
             landmarks.append((int(landmark.x * width), int(landmark.y * height),
                                   (landmark.z * width)))
@@ -82,8 +79,6 @@ def classifyPose(landmarks):
                                       landmarks[mp_pose.PoseLandmark.RIGHT_KNEE.value],
                                       landmarks[mp_pose.PoseLandmark.RIGHT_ANKLE.value])
     
-    #----------------------------------------------------------------------------------------------------------------
-    
     # warrior II pose or the T pose.
 
     # both arms are straight.
@@ -117,8 +112,29 @@ def classifyPose(landmarks):
 
 
 # Test
-image = cv2.imread('E:\Hackathons\ShellHacks2022\server\poses\img.jpg')
-landmarks = detectPose(image, pose, display=False)
+# image = cv2.imread('E:\Hackathons\ShellHacks2022\server\poses\img.jpg')
+# landmarks = detectPose(image, pose)
 
-if landmarks:
-    print(classifyPose(landmarks))
+# if landmarks:
+#     print(classifyPose(landmarks))
+
+
+from fastapi import FastAPI, File, UploadFile
+
+app = FastAPI()
+
+@app.post("/uploadfile/")
+async def image(image: UploadFile = File(...)):
+    with open("img.jpg", "wb") as buffer:
+        shutil.copyfileobj(image.file, buffer)
+
+    
+    
+
+    poseName = 'Unknown'
+    img = cv2.imread(str(pathlib.Path().resolve()) + '\img.jpg')
+    landmarks = detectPose(img, pose)
+    if landmarks:
+        poseName = classifyPose(landmarks)
+    
+    return {"Pose": poseName}
