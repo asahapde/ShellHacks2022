@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Webcam from "react-webcam";
-
+import axios from 'axios';
 var countdownTime = 3;
 var timerInterval;
 
@@ -31,11 +31,19 @@ export const ImageCapture = () => {
             
             countdownTime = 3;
         });
-
+        
     function countDown(){
         if(countdownTime == 0){
             clearInterval(timerInterval);
             const imageSrc = webcamRef.current.getScreenshot();
+            // var storage = multer.diskStorage({
+            //     destination: function (req, file, cb) {
+            //         cb(null, './public/uploads/')
+            //     },
+            //     filename: function (req, file, cb) {
+            //         cb(null, Date.now()+file.originalname)
+            //     }
+            // })
             setImage(imageSrc);
             document.getElementById("captureButton").disabled = false;
             document.getElementById("timer").remove();
@@ -45,6 +53,30 @@ export const ImageCapture = () => {
         }
         countdownTime--;
     }
+
+    // const submitForm = () => {
+    //     //Placeholder for post method
+    //     alert("Form submitted");
+        
+    // }
+
+    const submitForm = (event) => {
+        event.preventDefault()
+        const formData = new FormData();
+        formData.append("selectedFile", selectedFile);
+        try {
+          const response = await axios({
+            method: "post",
+            url: "/api/upload/file",
+            data: formData,
+            headers: { "Content-Type": "multipart/form-data" },
+          });
+        } catch(error) {
+          console.log(error)
+        }
+      }
+    
+    
     
     return (
 
@@ -60,6 +92,7 @@ export const ImageCapture = () => {
                     width={640}
                     videoConstraints={videoConstraints}
                 /> : <img src={image} />}
+              
             </div>
             <div>
                 {image != '' ?
@@ -78,6 +111,7 @@ export const ImageCapture = () => {
                         className="btn btn-primary capture-btn">Capture Pose</button>
                 }
             </div>
+            <button type="submit" className='btn btn-danger' onClick={(e) => submitForm(e)}>Submit Pose</button>
         </div>
     );
 };
