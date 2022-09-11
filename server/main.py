@@ -78,6 +78,13 @@ def classifyPose(landmarks):
     right_knee_angle = calculateAngle(landmarks[mp_pose.PoseLandmark.RIGHT_HIP.value],
                                       landmarks[mp_pose.PoseLandmark.RIGHT_KNEE.value],
                                       landmarks[mp_pose.PoseLandmark.RIGHT_ANKLE.value])
+
+    print("left_elbow_angle", left_elbow_angle)
+    print("right_elbow_angle", right_elbow_angle)
+    print("left_shoulder_angle", left_shoulder_angle)
+    print("right_shoulder_angle", right_shoulder_angle)
+    print("left_knee_angle", left_knee_angle)
+    print("right_knee_angle", right_knee_angle)
     
     # warrior II pose or the T pose.
 
@@ -97,7 +104,14 @@ def classifyPose(landmarks):
             # both legs are straight
             if left_knee_angle > 160 and left_knee_angle < 195 and right_knee_angle > 160 and right_knee_angle < 195:
                 label = 'T Pose'
- 
+            
+    if left_elbow_angle > 155 and left_elbow_angle < 195 and right_elbow_angle > 155 and right_elbow_angle < 195:
+        if left_shoulder_angle > 155 and left_shoulder_angle < 195 and right_shoulder_angle > 155 and right_shoulder_angle < 195:
+            label = 'Mountain'
+
+    if left_elbow_angle > 45 and left_elbow_angle < 85 and right_elbow_angle > 275 and right_elbow_angle < 315:
+        if left_knee_angle > 230 and left_knee_angle < 270 or right_knee_angle > 80 and right_knee_angle < 120:
+            label = 'Goddess'
     
     # Tree pose
     # one leg is straight
@@ -108,15 +122,6 @@ def classifyPose(landmarks):
                 
     
     return label
-
-
-
-# Test
-# image = cv2.imread('E:\Hackathons\ShellHacks2022\server\poses\img.jpg')
-# landmarks = detectPose(image, pose)
-
-# if landmarks:
-#     print(classifyPose(landmarks))
 
 
 from fastapi import FastAPI, File, UploadFile
