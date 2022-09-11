@@ -60,17 +60,32 @@ export const ImageCapture = () => {
         
     // }
 
+    function dataURLtoFile(dataurl, filename) {
+ 
+        var arr = dataurl.split(','),
+            mime = arr[0].match(/:(.*?);/)[1],
+            bstr = atob(arr[1]), 
+            n = bstr.length, 
+            u8arr = new Uint8Array(n);
+
+        while(n--){
+            u8arr[n] = bstr.charCodeAt(n);
+        }
+
+        return new File([u8arr], filename, {type:mime});
+    }
+
     const submitForm = async (event) => {
         event.preventDefault()
         const formData = new FormData();
-        console.log(image);
-        formData.append("image", image);
-        console.log(formData.get('image'))
+        var imageConverted = dataURLtoFile(image, "convertedImage");
+        console.log(imageConverted);
+        formData.append("image", imageConverted);
         try {
           const response = await axios({
             method: "post",
             url: "http://127.0.0.1:8000/uploadfile",
-            image: formData,
+            data: formData,
             headers: { "Content-Type": "multipart/form-data" },
           }).then(function (response) {
             console.log(response);
