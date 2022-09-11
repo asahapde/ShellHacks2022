@@ -60,17 +60,22 @@ export const ImageCapture = () => {
         
     // }
 
-    const submitForm = (event) => {
+    const submitForm = async (event) => {
         event.preventDefault()
         const formData = new FormData();
-        formData.append("selectedFile", selectedFile);
+        console.log(image);
+        formData.append("image", image);
+        console.log(formData.get('image'))
         try {
           const response = await axios({
             method: "post",
-            url: "/api/upload/file",
-            data: formData,
+            url: "http://127.0.0.1:8000/uploadfile",
+            image: formData,
             headers: { "Content-Type": "multipart/form-data" },
-          });
+          }).then(function (response) {
+            console.log(response);
+          })
+
         } catch(error) {
           console.log(error)
         }
