@@ -23,6 +23,7 @@ export const ImageCapture = () => {
 
         () => {
             
+            document.getElementById("yogaPose").innerHTML = "";
             document.getElementById("captureButton").disabled = true;
             const timerHeader = document.createElement("h1");
             timerHeader.id = "timer";
@@ -88,7 +89,8 @@ export const ImageCapture = () => {
             data: formData,
             headers: { "Content-Type": "multipart/form-data" },
           }).then(function (response) {
-            console.log(response);
+            var currentPose = response.data.Pose;
+            document.getElementById("yogaPose").innerHTML = currentPose;
           })
 
         } catch(error) {
@@ -132,6 +134,7 @@ export const ImageCapture = () => {
                 }
             </div>
             <button type="submit" className='btn btn-danger' onClick={(e) => submitForm(e)}>Submit Pose</button>
+            <h1 id="yogaPose"></h1>
         </div>
     );
 };
